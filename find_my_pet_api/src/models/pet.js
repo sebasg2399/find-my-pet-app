@@ -30,11 +30,14 @@ Pet.hasMany(Photo, {
   foreignKey: "pet_id",
   sourceKey: "id",
   as: "album",
+  onDelete: "CASCADE",
+  hooks: true,
 });
 
 Photo.belongsTo(Pet, {
   foreignKey: "pet_id",
   targetKey: "id",
+  onDelete: "CASCADE",
 });
 
 Pet.hasOne(Report, {
