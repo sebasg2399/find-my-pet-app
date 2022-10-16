@@ -23,6 +23,7 @@ Report.hasOne(Position, {
   foreignKey: "report_id",
   sourceKey: "id",
   onDelete: "CASCADE",
+  hooks: true,
   onUpdate: "CASCADE",
 });
 
