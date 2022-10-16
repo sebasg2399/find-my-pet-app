@@ -1,4 +1,5 @@
 import { css } from "@emotion/react";
+import { colors } from "assets/colors";
 import { typography } from "assets/typography";
 import { fonts } from "../fonts";
 export const global = css`
@@ -6,7 +7,8 @@ export const global = css`
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: ${fonts.primary};
+    font-family: ${fonts.secondary};
+    color: ${colors.gray.dark};
   }
   #root {
     position: relative;

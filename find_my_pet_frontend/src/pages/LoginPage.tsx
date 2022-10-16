@@ -1,6 +1,8 @@
 import styled from "@emotion/styled";
 import { colors, fonts, shadows } from "assets";
 import React from "react";
+import { HiKey } from "react-icons/hi";
+import { Input } from "../components/UI/Input";
 
 const StyledMain = styled.main`
   background-color: ${colors.yellow.light};
@@ -15,11 +17,11 @@ const Header = styled.header`
   display: flex;
   align-items: center;
   padding: 2rem;
-  color: white;
   background-color: ${colors.yellow.regular};
   justify-content: center;
-  & h4{
+  & h4 {
     font-family: ${fonts.pacific};
+    color: white;
   }
 `;
 export const LoginPage = () => {
@@ -28,6 +30,9 @@ export const LoginPage = () => {
       <Header>
         <h4>Find my Pet</h4>
       </Header>
+      <form action="">
+        <Input type={"password"} leftIcon={<HiKey />} />
+      </form>
     </StyledMain>
   );
 };
