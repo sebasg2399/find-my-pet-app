@@ -1,5 +1,6 @@
 import styled from "@emotion/styled";
 import { colors, fonts } from "assets";
+import { useAuth } from "context/AuthContext";
 import { useState } from "react";
 import { HiOutlineMenu } from "react-icons/hi";
 import { SideBar } from "./SideBar";

@@ -42,6 +42,6 @@ export const global = css`
     ${typography.regular.headline6}
   }
   svg {
-    font-size: 1.25rem !important;
+    font-size: 1.25rem;
   }
 `;

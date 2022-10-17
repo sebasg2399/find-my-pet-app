@@ -1,7 +1,11 @@
-import React from 'react'
+import { NavBar } from "components/UI/NavBar";
+import { AppLayout } from "layouts/AppLayout";
+import React from "react";
 
 export const AuthorizedApp = () => {
   return (
-    <div>AuthorizedApp</div>
-  )
-}
+    <AppLayout>
+      <NavBar />
+    </AppLayout>
+  );
+};

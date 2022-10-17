@@ -5,6 +5,7 @@ import { MdPets } from "react-icons/md";
 import { FaUserCircle } from "react-icons/fa";
 import { TiWarning } from "react-icons/ti";
 import { BiLogOut } from "react-icons/bi";
+import { useAuth } from "context/AuthContext";
 const Wrapper = styled.div<Partial<Props>>`
   position: absolute;
   top: 0;
@@ -76,6 +77,7 @@ type Props = {
 };
 
 export const SideBar = ({ active, toggle }: Props) => {
+  const {user} = useAuth()
   return (
     <Wrapper
       active={active}
@@ -96,7 +98,7 @@ export const SideBar = ({ active, toggle }: Props) => {
           <MdPets />
           <UserName>
             <p>Hey</p>
-            <h5>Alexandra S.</h5>
+            <h5>{user?.first_name} {user?.last_name[0]}</h5>
           </UserName>
         </Header>
         <Body>

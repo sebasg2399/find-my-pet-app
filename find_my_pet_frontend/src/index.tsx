@@ -1,17 +1,20 @@
 import { Global } from "@emotion/react";
 import { global, reset } from "assets";
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import App from './App';
+import { AuthProvider } from "context/AuthContext/AuthProvider";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App";
 
 const root = ReactDOM.createRoot(
-  document.getElementById('root') as HTMLElement
+  document.getElementById("root") as HTMLElement
 );
 root.render(
   <React.StrictMode>
-  <Global styles={reset} />
-  <Global styles={global} />
-    <App />
+    <Global styles={reset} />
+    <Global styles={global} />
+    <AuthProvider>
+      <App />
+    </AuthProvider>
   </React.StrictMode>
 );
 

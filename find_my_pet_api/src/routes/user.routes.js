@@ -6,10 +6,14 @@ import {
   removePet,
   updatePet,
   registerReport,
+  getUser,
 } from "../controllers/user.controller.js";
 import { verifyToken } from "../middlewares/auth.jwt.js";
 
 export const user_router = Router();
+
+user_router.post("/profile",verifyToken, getUser);
+
 user_router.post("/mypets/", verifyToken, registerPet);
 user_router.get("/mypets/", verifyToken, getPets);
 user_router.delete("/mypets/:pet_id", verifyToken, removePet);

@@ -1,4 +1,3 @@
-
 export const colors = {
   pink: {
     regular: "#F48FB1",
@@ -19,5 +18,8 @@ export const colors = {
   yellow: {
     regular: "#ffd037",
     light: "#fffbee",
+  },
+  brown: {
+    regular: "#9d2d1f",
   },
 };

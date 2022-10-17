@@ -18,7 +18,6 @@ const Layout = styled.div`
     position: relative;
     z-index: 15;
     /* background-color: white; */
-    overflow-y: scroll;
   }
   & .cover {
     z-index: -1;
