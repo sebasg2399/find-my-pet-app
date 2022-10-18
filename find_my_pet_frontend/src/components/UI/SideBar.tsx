@@ -23,6 +23,7 @@ const StyledSideBar = styled.aside<Partial<Props>>`
   border-radius: 0 1rem 1rem 0;
   overflow: hidden;
   background-color: ${colors.yellow.regular};
+  background-color: ${colors.gray.dark};
   left: -800px;
   transform: translateX(${(props) => (props.active ? "800px" : "0")});
 `;
@@ -45,6 +46,7 @@ const UserName = styled.div`
     font-family: ${fonts.secondary};
     font-size: 1.25rem;
     font-weight: 500;
+    text-transform: capitalize;
   }
 `;
 const Body = styled.ul`
@@ -77,7 +79,7 @@ type Props = {
 };
 
 export const SideBar = ({ active, toggle }: Props) => {
-  const {user} = useAuth()
+  const { user, AuthLogout } = useAuth();
   return (
     <Wrapper
       active={active}
@@ -98,7 +100,9 @@ export const SideBar = ({ active, toggle }: Props) => {
           <MdPets />
           <UserName>
             <p>Hey</p>
-            <h5>{user?.first_name} {user?.last_name[0]}</h5>
+            <h5>
+              {user?.first_name} {user?.last_name[0]}
+            </h5>
           </UserName>
         </Header>
         <Body>
@@ -118,7 +122,7 @@ export const SideBar = ({ active, toggle }: Props) => {
             <FaUserCircle />
             <p>My Profile</p>
           </Item>
-          <Item>
+          <Item onClick={() => AuthLogout()}>
             <BiLogOut strokeWidth={1} />
             <p>Logout</p>
           </Item>

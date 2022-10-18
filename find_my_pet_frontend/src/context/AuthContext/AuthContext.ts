@@ -14,9 +14,9 @@ export interface AuthContextProps {
 
   //methods
 
-  AuthLogin: (body: any)=>void
-  AuthRegister: (body: any)=>void
-
+  AuthLogin: (body: any) => void;
+  AuthRegister: (body: any) => void;
+  AuthLogout: () => void;
 }
 
 export const AuthContext = createContext<AuthContextProps>(

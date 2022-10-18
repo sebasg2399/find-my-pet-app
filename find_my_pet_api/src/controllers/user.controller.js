@@ -202,7 +202,7 @@ export const updateReport = async (req, res) => {
 };
 
 export const getUser = async (req, res) => {
-  const user = await User.findByPk(req, user_id);
+  const user = await User.findByPk(req.user_id);
   if (!user) {
     return res.status(400).send({ message: "Invalid user" });
   } else {

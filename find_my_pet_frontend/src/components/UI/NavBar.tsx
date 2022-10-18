@@ -11,10 +11,15 @@ const StyledNav = styled.nav`
   justify-content: space-between;
   padding: 1rem 2rem;
   color: white;
-  background-color: ${colors.yellow.regular};
+  /* background-color: ${colors.yellow.regular}; */
+  background-color: ${colors.gray.dark};
   & > h5 {
     font-family: ${fonts.secondary};
     font-size: 1.25rem;
+    color: white;
+  }
+  & svg {
+    color: white;
   }
 `;
 

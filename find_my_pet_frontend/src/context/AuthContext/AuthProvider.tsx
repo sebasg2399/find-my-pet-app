@@ -1,5 +1,6 @@
-import { getUser, login, register } from "apifetch/auth_services";
+import { api, getUser, login, register } from "apifetch/auth_services";
 import React, { useEffect, useReducer } from "react";
+import { useNavigate } from "react-router-dom";
 import { AuthContext, User } from "./AuthContext";
 import { AuthReducer } from "./AuthReducer";
 
@@ -20,18 +21,28 @@ export const AuthProvider = ({ children }: Props) => {
   const [state, dispatch] = useReducer(AuthReducer, INITIAL_STATE);
   useEffect(() => {
     const rawToken = sessionStorage.getItem("token");
-    if (rawToken) {
-      getUser().then((e) => {
-        console.log(e);
+    if (rawToken && !state.user) {
+      api.defaults.headers.common["Authorization"] = `Bearer ${rawToken}`;
+      getUser().then(({ data }) => {
+        // console.log(data.message);
+        setUser(data.user)
       });
     }
-  }, []);
+  }, [state.user]);
+
+  useEffect(() => {}, [state.user]);
+
+  const setUser = (user: User) => {
+    dispatch({ type: "setUser", payload: user });
+  };
 
   const AuthLogin = (body: any) => {
     login(body)
       .then(({ data }) => {
         console.log(data.message);
-        dispatch({ type: "setUser", payload: data.user });
+        console.log(data);
+        sessionStorage.setItem("token", data.user.token);
+        setUser(data.user)
       })
       .catch((e) => {
         console.log(e.response.data.message);
@@ -41,14 +52,20 @@ export const AuthProvider = ({ children }: Props) => {
     register(body)
       .then(({ data }) => {
         console.log(data.message);
-        dispatch({ type: "setUser", payload: data.user });
+        setUser(data.user)
       })
       .catch((e) => {
         console.log(e.response.data.message);
       });
   };
+  const AuthLogout = () => {
+    sessionStorage.removeItem("token")
+    dispatch({ type: "removeUser" });
+  };
   return (
-    <AuthContext.Provider value={{ ...state, AuthLogin, AuthRegister }}>
+    <AuthContext.Provider
+      value={{ ...state, AuthLogin, AuthRegister, AuthLogout }}
+    >
       {children}
     </AuthContext.Provider>
   );

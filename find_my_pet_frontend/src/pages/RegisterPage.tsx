@@ -13,8 +13,9 @@ import { HiIdentification, HiKey } from "react-icons/hi";
 import { Button } from "components/UI/Button";
 import { BsFillTelephoneFill, BsPersonCircle } from "react-icons/bs";
 import { useAuth } from "context/AuthContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 export const RegisterPage = () => {
+  const navigate = useNavigate();
   const { AuthRegister } = useAuth();
   return (
     <StyledMain>
@@ -23,6 +24,7 @@ export const RegisterPage = () => {
       </Header>
       <Formik
         onSubmit={(values) => {
+          navigate("/home");
           AuthRegister(values);
         }}
         initialValues={{
@@ -90,8 +92,12 @@ export const RegisterPage = () => {
             />{" "}
           </Field>
           <Control>
-            <Button type="submit" block={true}>Create Account</Button>
-            <p>Already registered? <Link to="/login">Login with email</Link> </p>
+            <Button type="submit" block={true}>
+              Create Account
+            </Button>
+            <p>
+              Already registered? <Link to="/login">Login with email</Link>{" "}
+            </p>
           </Control>
         </StyledForm>
       </Formik>

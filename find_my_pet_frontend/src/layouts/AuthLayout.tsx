@@ -25,7 +25,8 @@ const Layout = styled.div`
     width: 100%;
     height: 100%;
     background-image: url(${DogsCollage});
-    filter: grayscale(0.5) blur(2px);
+    filter: brightness(65%) blur(2px);
+    /* filter: ; */
     background-size: contain;
   }
 `;

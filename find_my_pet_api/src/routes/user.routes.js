@@ -12,7 +12,7 @@ import { verifyToken } from "../middlewares/auth.jwt.js";
 
 export const user_router = Router();
 
-user_router.post("/profile",verifyToken, getUser);
+user_router.get("/profile",verifyToken, getUser);
 
 user_router.post("/mypets/", verifyToken, registerPet);
 user_router.get("/mypets/", verifyToken, getPets);

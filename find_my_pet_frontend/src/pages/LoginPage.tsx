@@ -7,7 +7,7 @@ import { Formik, Form } from "formik";
 import { MdEmail } from "react-icons/md";
 import { Button } from "../components/UI/Button";
 import { useAuth } from "context/AuthContext";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 export const StyledMain = styled.main`
   background-color: ${colors.yellow.light};
   height: 600px;
@@ -70,6 +70,7 @@ export const Control = styled.div`
 `;
 export const LoginPage = () => {
   const { AuthLogin } = useAuth();
+  const navigate = useNavigate()
   return (
     <StyledMain>
       <Header>
@@ -77,6 +78,7 @@ export const LoginPage = () => {
       </Header>
       <Formik
         onSubmit={(values) => {
+          navigate("/home");
           AuthLogin(values);
         }}
         initialValues={{

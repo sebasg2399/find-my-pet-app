@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "db:create": "node scripts/create_database.js"
+    "db:create": "node scripts/create_database.js",
+    "start": "node src/index.js"
   },
   "type": "module",
   "keywords": [],
