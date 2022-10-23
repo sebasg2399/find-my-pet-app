@@ -14,6 +14,12 @@ import { Button } from "components/UI/Button";
 import { BsFillTelephoneFill, BsPersonCircle } from "react-icons/bs";
 import { useAuth } from "context/AuthContext";
 import { Link, useNavigate } from "react-router-dom";
+import styled from "@emotion/styled";
+
+export const Double = styled.div`
+  display: flex;
+  gap: 0.5rem;
+`;
 export const RegisterPage = () => {
   const navigate = useNavigate();
   const { AuthRegister } = useAuth();
@@ -46,42 +52,46 @@ export const RegisterPage = () => {
               leftIcon={<MdEmail />}
             />
           </Field>
-          <Field>
-            <Label htmlFor="first_name">First name</Label>
-            <FormikInput
-              placeholder="John "
-              name="first_name"
-              type={"text"}
-              leftIcon={<BsPersonCircle />}
-            />
-          </Field>
-          <Field>
-            <Label htmlFor="last_name">Last name</Label>
-            <FormikInput
-              placeholder="Doe"
-              name="last_name"
-              type={"last_name"}
-              leftIcon={<BsPersonCircle />}
-            />
-          </Field>
-          <Field>
-            <Label htmlFor="phone">Phone</Label>
-            <FormikInput
-              placeholder="+51 99999999"
-              name="phone"
-              type="tel"
-              leftIcon={<BsFillTelephoneFill />}
-            />
-          </Field>
-          <Field>
-            <Label htmlFor="identification">Identification</Label>
-            <FormikInput
-              name="identification"
-              type={"text"}
-              placeholder={"777777777"}
-              leftIcon={<HiIdentification />}
-            />{" "}
-          </Field>
+          <Double>
+            <Field>
+              <Label htmlFor="first_name">First name</Label>
+              <FormikInput
+                placeholder="John "
+                name="first_name"
+                type={"text"}
+                leftIcon={<BsPersonCircle />}
+              />
+            </Field>
+            <Field>
+              <Label htmlFor="last_name">Last name</Label>
+              <FormikInput
+                placeholder="Doe"
+                name="last_name"
+                type={"last_name"}
+                leftIcon={<BsPersonCircle />}
+              />
+            </Field>
+          </Double>
+          <Double>
+            <Field>
+              <Label htmlFor="phone">Phone</Label>
+              <FormikInput
+                placeholder="+51 99999999"
+                name="phone"
+                type="tel"
+                leftIcon={<BsFillTelephoneFill />}
+              />
+            </Field>
+            <Field>
+              <Label htmlFor="identification">Identification</Label>
+              <FormikInput
+                name="identification"
+                type={"text"}
+                placeholder={"777777777"}
+                leftIcon={<HiIdentification />}
+              />{" "}
+            </Field>
+          </Double>
           <Field>
             <Label htmlFor="password">Password</Label>
             <FormikInput

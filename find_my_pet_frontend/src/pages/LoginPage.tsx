@@ -26,11 +26,13 @@ export const Header = styled.header`
   align-items: center;
   padding: 2rem;
   background-color: ${colors.yellow.regular};
+  background-color: ${colors.brown.light};
   justify-content: center;
   & h4 {
     font-family: ${fonts.pacific};
     /* color: #9e5f00; */
-    color: ${colors.brown.regular};
+    color: ${colors.yellow.light};
+    /* color: ${colors.brown.regular}; */
     /* color: #773605; */
   }
 `;
@@ -70,7 +72,7 @@ export const Control = styled.div`
 `;
 export const LoginPage = () => {
   const { AuthLogin } = useAuth();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   return (
     <StyledMain>
       <Header>
@@ -109,7 +111,9 @@ export const LoginPage = () => {
             <Button type="submit" block={true}>
               Login
             </Button>
-            <p>Not registered yet? <Link to="/register">Create an account</Link> </p>
+            <p>
+              Not registered yet? <Link to="/register">Create an account</Link>{" "}
+            </p>
           </Control>
         </StyledForm>
       </Formik>
