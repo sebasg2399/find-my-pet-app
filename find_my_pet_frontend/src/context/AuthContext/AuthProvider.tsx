@@ -21,11 +21,12 @@ export const AuthProvider = ({ children }: Props) => {
   const [state, dispatch] = useReducer(AuthReducer, INITIAL_STATE);
   useEffect(() => {
     const rawToken = sessionStorage.getItem("token");
+    console.log(rawToken);
     if (rawToken && !state.user) {
       api.defaults.headers.common["Authorization"] = `Bearer ${rawToken}`;
       getUser().then(({ data }) => {
         // console.log(data.message);
-        setUser(data.user)
+        setUser(data.user);
       });
     }
   }, [state.user]);
@@ -41,8 +42,11 @@ export const AuthProvider = ({ children }: Props) => {
       .then(({ data }) => {
         console.log(data.message);
         console.log(data);
+        api.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${data.user.token}`;
         sessionStorage.setItem("token", data.user.token);
-        setUser(data.user)
+        setUser(data.user);
       })
       .catch((e) => {
         console.log(e.response.data.message);
@@ -52,14 +56,18 @@ export const AuthProvider = ({ children }: Props) => {
     register(body)
       .then(({ data }) => {
         console.log(data.message);
-        setUser(data.user)
+        api.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${data.user.token}`;
+        sessionStorage.setItem("token", data.user.token);
+        setUser(data.user);
       })
       .catch((e) => {
         console.log(e.response.data.message);
       });
   };
   const AuthLogout = () => {
-    sessionStorage.removeItem("token")
+    sessionStorage.removeItem("token");
     dispatch({ type: "removeUser" });
   };
   return (

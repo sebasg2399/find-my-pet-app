@@ -1,23 +1,23 @@
 import { createContext } from "react";
 
-export interface Photo {
-  id: number,
-  description: string,
-  img_url: string
-}
-
 export interface Pet {
   id: number;
   name: string;
   age: number;
   breed: string;
   color: string;
-  album: Photo[]
+  address: string;
+  sex: string;
+  weight: number;
+  photo_url: string;
 }
 
 type PetsContextProps = {
   isLoading: boolean;
   pets: Pet[];
+
+  addPet: (body: Partial<Pet>) => void;
+  findPet: (id: number) => Pet | undefined;
 };
 
 export const PetsContext = createContext<PetsContextProps>(
