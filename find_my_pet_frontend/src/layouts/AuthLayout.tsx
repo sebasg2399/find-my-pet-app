@@ -1,5 +1,4 @@
 import styled from "@emotion/styled";
-import { colors } from "assets";
 import React from "react";
 import DogsCollage from "assets/images/perritos.jpg";
 interface Props {
