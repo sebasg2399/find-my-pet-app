@@ -1,11 +1,12 @@
 import styled from "@emotion/styled";
-import { colors, fonts } from "assets";
+import { colors, fonts, shadows } from "assets";
 import { HiHome } from "react-icons/hi";
 import { MdPets } from "react-icons/md";
 import { FaUserCircle } from "react-icons/fa";
 import { TiWarning } from "react-icons/ti";
 import { BiLogOut } from "react-icons/bi";
 import { useAuth } from "context/AuthContext";
+import { NavLink } from "react-router-dom";
 const Wrapper = styled.div<Partial<Props>>`
   position: absolute;
   top: 0;
@@ -13,6 +14,7 @@ const Wrapper = styled.div<Partial<Props>>`
   width: 100%;
   height: 100%;
   background-color: #00000065;
+  z-index: 1;
   display: ${(props) => (props.active ? "block" : "none")};
   /* display: none; */
 `;
@@ -24,8 +26,11 @@ const StyledSideBar = styled.aside<Partial<Props>>`
   overflow: hidden;
   background-color: ${colors.yellow.regular};
   background-color: ${colors.gray.dark};
+  background-color: ${colors.brown.light};
+  z-index: 10;
   left: -800px;
   transform: translateX(${(props) => (props.active ? "800px" : "0")});
+  box-shadow: ${shadows.elevation1};
 `;
 const Header = styled.div`
   height: 7.5rem;
@@ -110,10 +115,12 @@ export const SideBar = ({ active, toggle }: Props) => {
             <HiHome />
             <p>Home</p>
           </Item>
-          <Item>
-            <MdPets />
-            <p>My Pets</p>
-          </Item>
+          <NavLink to="/mypets">
+            <Item>
+              <MdPets />
+              <p>My Pets</p>
+            </Item>
+          </NavLink>
           <Item>
             <TiWarning />
             <p>My Reports</p>

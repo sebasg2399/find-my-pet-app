@@ -10,7 +10,9 @@ const StyledButton = styled.button<ButtonProps>`
   outline: none;
   padding: 0.5rem 2rem;
   background-color: ${colors.gray.regular};
+  background-color: ${colors.brown.light};
   color: white;
+  color: ${colors.yellow.light};
   /* color: #ffffff; */
   /* font-weight: 500; */
   border-radius: 1rem;

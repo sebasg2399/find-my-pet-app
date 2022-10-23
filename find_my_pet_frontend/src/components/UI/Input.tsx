@@ -1,12 +1,13 @@
 import styled from "@emotion/styled";
-import React, { InputHTMLAttributes } from "react";
+import React, { InputHTMLAttributes, TextareaHTMLAttributes } from "react";
 import { colors, shadows } from "assets";
 import { useField } from "formik";
 interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   leftIcon?: JSX.Element;
-  rightIcon?: JSX.Element;
 }
-
+interface TextAreaProps extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+  leftIcon?: JSX.Element;
+}
 const InputContainer = styled.div`
   background-color: white;
   /* padding: 0.5rem 1rem; */
@@ -20,7 +21,7 @@ const InputContainer = styled.div`
   z-index: 0;
   backdrop-filter: blur(1px);
   & svg {
-    font-size: 1.25rem;
+    font-size: 1rem;
     /* padding: 0.5rem; */
   }
 `;
@@ -28,8 +29,8 @@ const IconWrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 40px;
-  height: 40px;
+  width: 30px;
+  height: 100%;
   background-color: #f3f3f3;
   border-right: 2px solid ${colors.gray.shallow};
 `;
@@ -37,13 +38,22 @@ const StyledInput = styled.input<InputProps>`
   background-color: white;
   border: none;
   outline: none;
-  font-size: 12px;
+  font-size: 10px;
   width: 50%;
-  padding: 0.25rem 0.5rem;
+  padding: 0.25rem 0.25rem;
   z-index: 1;
   flex-grow: 1;
 `;
-
+const StyledTextArea = styled.textarea`
+  background-color: white;
+  border: none;
+  outline: none;
+  font-size: 10px;
+  width: 100%;
+  padding: 0.5rem 1rem;
+  z-index: 1;
+  flex-grow: 1;
+`;
 export const Input = ({ leftIcon, ...props }: InputProps) => {
   return (
     <InputContainer>
@@ -54,6 +64,15 @@ export const Input = ({ leftIcon, ...props }: InputProps) => {
 };
 
 export const FormikInput = ({ ...props }: InputProps) => {
-  const [field, _] = useField(props as any);
+  const [field] = useField(props as any);
   return <Input {...field} {...props} />;
+};
+
+export const TextArea = ({ leftIcon, ...props }: TextAreaProps) => {
+  return (
+    <InputContainer>
+      {leftIcon && <IconWrapper>{leftIcon}</IconWrapper>}
+      <StyledTextArea {...props} />
+    </InputContainer>
+  );
 };
