@@ -4,7 +4,10 @@ import { AuthProvider } from "context/AuthContext/AuthProvider";
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App";
+import mapboxgl from "mapbox-gl"; // or "const mapboxgl = require('mapbox-gl');"
 
+mapboxgl.accessToken =
+  "pk.eyJ1IjoidXp1MjMiLCJhIjoiY2w0b3Mza3R3MDVzbjNpb2RlNzgxNHpoNiJ9.kufFWNChbHrochOE6XXksw";
 const root = ReactDOM.createRoot(
   document.getElementById("root") as HTMLElement
 );

@@ -8,7 +8,6 @@ export const global = css`
     padding: 0;
     box-sizing: border-box;
     font-family: ${fonts.secondary};
-    color: ${colors.gray.dark};
   }
   #root {
     position: relative;

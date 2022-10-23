@@ -21,5 +21,6 @@ export const colors = {
   },
   brown: {
     regular: "#9d2d1f",
+    light: "#AF6359"
   },
 };
