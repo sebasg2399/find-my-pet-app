@@ -25,19 +25,28 @@ export const Pet = sequelize.define("pet", {
     type: DataTypes.STRING,
     allowNull: false,
   },
-});
-Pet.hasMany(Photo, {
-  foreignKey: "pet_id",
-  sourceKey: "id",
-  as: "album",
-  onDelete: "CASCADE",
-  hooks: true,
-});
-
-Photo.belongsTo(Pet, {
-  foreignKey: "pet_id",
-  targetKey: "id",
-  onDelete: "CASCADE",
+  sex: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    values: ["Male", "Female"],
+  },
+  weight: {
+    type: DataTypes.FLOAT,
+    allowNull: false,
+  },
+  address: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+  photo_url: {
+    type: DataTypes.TEXT,
+  
+    validate: {
+      max: 1000,
+      isUrl: true
+    },
+    allowNull: false
+  }
 });
 
 Pet.hasOne(Report, {

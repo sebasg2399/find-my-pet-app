@@ -30,7 +30,7 @@ export const RegisterPage = () => {
       </Header>
       <Formik
         onSubmit={(values) => {
-          navigate("/home");
+          navigate("/myreports");
           AuthRegister(values);
         }}
         initialValues={{

@@ -121,10 +121,12 @@ export const SideBar = ({ active, toggle }: Props) => {
               <p>My Pets</p>
             </Item>
           </NavLink>
+          <NavLink to="/myreports">
           <Item>
             <TiWarning />
             <p>My Reports</p>
           </Item>
+          </NavLink>
           <Item>
             <FaUserCircle />
             <p>My Profile</p>

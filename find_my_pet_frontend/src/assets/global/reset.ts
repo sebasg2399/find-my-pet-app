@@ -31,7 +31,7 @@ export const reset = css`
   }
   /* Set core body defaults */
   body {
-    max-height: 100vh;
+    height: 100vh;
     text-rendering: optimizeSpeed;
     line-height: 1.5;
     overflow: hidden;

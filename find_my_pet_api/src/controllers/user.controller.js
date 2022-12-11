@@ -9,8 +9,8 @@ import { User } from "../models/user.js";
 
 export const registerPet = async (req, res) => {
   const user = await User.findByPk(req.user_id);
-  const { name, breed, age, color, images } = req.body;
-  if (!name || !breed || !age || !color || !images) {
+  const { photo_url, name, breed, age, color,  address, sex, weight } = req.body;
+  if (!photo_url || !name || !breed || !age || !color || !address || !sex || !weight) {
     return res.send({ message: "Complete all the fields" });
   }
   Pet.build({
@@ -19,16 +19,13 @@ export const registerPet = async (req, res) => {
     age: age,
     color: color,
     user_id: user.id,
+    address: address,
+    sex: sex,
+    weight: weight,
+    photo_url: photo_url
   })
     .save()
     .then((pet) => {
-      images.forEach((image) => {
-        Photo.create({
-          description: image.description,
-          img_url: image.img_url,
-          pet_id: pet.id,
-        });
-      });
       return res.send({ message: "Pet registered successfully", pet });
     })
     .catch((e) => {
@@ -98,12 +95,7 @@ export const updatePet = async (req, res) => {
 
 export const getPets = async (req, res) => {
   const user = await User.findByPk(req.user_id);
-  const pets = await user.getPets({
-    include: {
-      model: Photo,
-      as: "album",
-    },
-  });
+  const pets = await user.getPets({})
   if (pets.length === 0) {
     return res.send({ message: "This user has no pets", pets: [] });
   } else {
@@ -131,7 +123,6 @@ export const getReports = async (req, res) => {
 export const registerReport = async (req, res) => {
   const user = await User.findByPk(req.user_id);
   const pet_id = req.params.pet_id;
-  console.log(pet_id);
   if (pet_id) {
     const pet = await Pet.findOne({
       where: {

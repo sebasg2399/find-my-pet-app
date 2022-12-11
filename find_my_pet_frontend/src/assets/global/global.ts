@@ -10,8 +10,8 @@ export const global = css`
     font-family: ${fonts.secondary};
   }
   #root {
-    position: relative;
     font-size: 1rem;
+    height: 100%;
     line-height: 1.5rem;
   }
   h1,

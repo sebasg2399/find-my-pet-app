@@ -6,10 +6,10 @@ interface Props {
 }
 
 const Layout = styled.div`
-  display: grid;
+  /* display: grid;
   grid-template-rows: 100px auto;
   min-height: 100vh;
-  overflow: hidden;
+  overflow: hidden; */
 `;
 
 export const AppLayout = ({ children }: Props) => {

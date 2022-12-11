@@ -9,6 +9,7 @@ import { Marker } from "mapbox-gl";
 import { Input, TextArea } from "components/UI/Input";
 import { Control, Field, Label } from "pages/LoginPage";
 import { Button } from "components/UI/Button";
+import { useMyReports } from "context/MyReportsContext";
 
 const StyledMain = styled.main`
   /* margin-bottom: 2rem; */
@@ -42,9 +43,13 @@ export const ReportRegister = () => {
   const [pet, setPet]: [Pet | undefined, any] = useState<Pet | undefined>(
     undefined
   );
-  const [formValues, setFormValues] = useState({ date: new Date().toJSON() });
+  const [formValues, setFormValues] = useState({
+    report_message: "",
+    last_seen: new Date().toJSON(),
+  });
   const { pet_id } = useParams();
   const [pos, setPos] = useState<any>(null);
+  const { addReport } = useMyReports();
   useEffect(() => {
     if (pet_id) {
       const auxPet = findPet(parseInt(pet_id));
@@ -88,19 +93,22 @@ export const ReportRegister = () => {
         <Label>Mensaje</Label>
         <TextArea
           onChange={(e) => {
-            setFormValues((prev) => ({ ...prev, message: e.target.value }));
+            setFormValues((prev) => ({
+              ...prev,
+              report_message: e.target.value,
+            }));
           }}
         />
         <Label>Ultima vez visto</Label>
         <Input
           onChange={(e) => {
-            setFormValues((prev) => ({ ...prev, date: e.target.value }));
+            setFormValues((prev) => ({ ...prev, last_seen: e.target.value }));
           }}
           type="datetime-local"
         />
       </MessageContainer>
 
-      <Button onClick={() => console.log(formValues)}>Enviar</Button>
+      <Button onClick={() => addReport(formValues, pet.id)}>Enviar</Button>
     </StyledMain>
   );
 };

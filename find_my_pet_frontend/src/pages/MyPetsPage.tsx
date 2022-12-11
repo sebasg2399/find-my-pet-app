@@ -24,16 +24,12 @@ export const MyPetsPage = () => {
   console.log(pets);
   return (
     <StyledMain>
-      <PetsWrapper>
-        <PetsList>
-          {pets.map((pet) => (
-            <PetCard key={pet.id} pet={pet} />
-          ))}
-          <Link to="/mypets/register">
-            <Button>Register new pet</Button>
-          </Link>
-        </PetsList>
-      </PetsWrapper>
+        {pets.map((pet) => (
+          <PetCard key={pet.id} pet={pet} />
+        ))}
+        <Link to="/mypets/register">
+          <Button>Register new pet</Button>
+        </Link>
     </StyledMain>
   );
 };
